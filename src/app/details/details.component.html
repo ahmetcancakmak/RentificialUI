@@ -1,0 +1,225 @@
+<div>
+    <div class="row mb-4">
+        <!-- breadcrumb -->
+        <div class="col-md-3 mt-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background-color: white;font-size: x-small;">
+                    <li class="breadcrumb-item text-muted"><a href="#" class="text-muted">Home</a></li>
+                    <li class="breadcrumb-item text-muted"><a href="#" class="text-muted">Library</a></li>
+                    <li class="breadcrumb-item text-dark"><a href="#" class="text-muted">RT2553 tarife</a></li>
+                </ol>
+            </nav>
+        </div>
+        <!-- tabs -->
+        <div class="col-md-9">
+            <ul class="nav nav-tabs justify-content-end" style="border:none;margin-right: 7px;">
+                <div *ngFor="let data of parentToChildData">
+                    <li class="nav-item"
+                        style="background-color:rgb(230, 230, 230);border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;font-size: x-small;">
+                        <a class="nav-link" style="color: rgb(145, 145, 145);" href="#">{{data}}<i
+                                (click)="deleteTab(data)" class="fa fa-times ml-1"></i></a>
+                    </li>
+                </div>
+                <li *ngIf="parentToChildData" class="nav-item pt-1"
+                    style="background-color: rgb(218, 104, 104);border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;">
+                    <a (click)="deleteAllTabs()" href="#" class="text-white"><i class="fa fa-times-circle mx-1" style="color: white;"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- rate details -->
+    <div class="row">
+        <div class="col-md-3 mt-1">
+            <strong>#RT2553</strong> nolu tarife detayı
+        </div>
+        <div class="col-md-5 mt-1">
+            <strong class="text-success">Tarife önizleme</strong>
+        </div>
+        <div class="col-md-4 text-right" style="padding-right: 22px;">
+            <button type="button" class="btn btn-lg btn-secondary mr-1"
+                style="font-size: x-small;background-color: rgb(113, 187, 3);border:none"><i
+                    class="fa fa-plus pr-1"></i>Yeni Tarife</button>
+            <button type="button" class="btn btn-lg btn-secondary mr-1"
+                style="font-size: x-small;background-color: white;color:rgb(177, 176, 176);"><i
+                    class="fa fa-calendar pr-1"></i><strong style="color: black;">Bu Ay</strong> Temmuz<i
+                    class="fa fa-caret-down pl-1"></i></button>
+            <button type="button" class="btn btn-lg btn-secondary"
+                style="font-size: x-small;background-color: white;color:rgb(177, 176, 176);"><i
+                    class="fa fa-edit pr-1"></i>Düzenle</button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <!-- sub menu -->
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item text-muted" style="border:none;font-size: small;"><a href="#"
+                        class="text-success"><strong>Temel Bilgiler</strong><i class="fa fa-caret-right"
+                            style="margin-left: 80px;"></i></a></li>
+                <li class="list-group-item text-muted" style="border:none;font-size: small;"><a href="#"
+                        class="text-muted">Araç Tarifeleri</a></li>
+                <li class="list-group-item text-muted" style="border:none;font-size: small;"><a href="#"
+                        class="text-muted">Dahil ek hizmeler</a></li>
+            </ul>
+        </div>
+        <!-- charts -->
+        <div class="col-md-9">
+            <div class="container">
+                <!-- top -->
+                <div class="row">
+                    <div class="col border mr-2" style="box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="row">
+                            <i class="fa fa-file mt-4 ml-4" style="font-size:xx-large;color: rgb(113, 187, 3);"></i>
+                            <div class="col text-center">
+                                <div class="mt-2" style="font-size:12px;"><strong>Toplam kontrat Sayısı</strong></div>
+                                <div style="font-size:32px;color: rgb(113, 187, 3);"><strong>1.246</strong></div>
+                                <div class="pb-2" style="font-size:12px;"><strong>adet</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col border mr-2" style="box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="row">
+                            <i class="fa fa-map-marker mt-4 ml-4"
+                                style="font-size:xx-large;color: rgb(113, 187, 3);"></i>
+                            <div class="col text-center">
+                                <div class="mt-2" style="font-size:12px;"><strong>Toplam bölge Sayısı</strong></div>
+                                <div style="font-size:32px;color: rgb(113, 187, 3);"><strong>17</strong></div>
+                                <div class="pb-2" style="font-size:12px;"><strong>adet</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col border mr-2" style="box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="row">
+                            <dx-pie-chart class="ml-3 mt-3" style="height: 75px;width: 75px;" id="pie" type="doughnut"
+                                [dataSource]="populationByRegions">
+                                <dxi-series argumentField="region">
+                                </dxi-series>
+                            </dx-pie-chart>
+                            <div class="text-center">
+                                <div class="mt-2" style="font-size:12px;"><strong>İptal oranı</strong></div>
+                                <div style="font-size:32px;color:rgb(233, 83, 83)"><strong>23</strong></div>
+                                <div class="pb-2" style="font-size:12px;"><strong>adet toplam iptal</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col border" style="box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="row">
+                            <dx-pie-chart class="ml-3 mt-3" style="height: 75px;width: 75px;" id="pie" type="doughnut"
+                                palette="Soft Pastel" [dataSource]="populationByRegionsUpsell">
+                                <dxi-series argumentField="region">
+                                </dxi-series>
+                            </dx-pie-chart>
+                            <div class="text-center">
+                                <div class="mt-2" style="font-size:12px;"><strong>Upsell oranı</strong></div>
+                                <div style="font-size:32px;color:rgb(118, 177, 214);"><strong>8</strong></div>
+                                <div class="pb-2" style="font-size:12px;"><strong>adet toplam upsell</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- bottom -->
+                <div class="row mt-2">
+                    <div class="col border mr-2" style="height: 100px;box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="row">
+                            <i class="fa fa-balance-scale mt-4 ml-4"
+                                style="font-size:xx-large;color: rgb(113, 187, 3);"></i>
+                            <div class="col text-center">
+                                <div class="mt-2" style="font-size:12px;"><strong>Ortalama günlük ücret</strong></div>
+                                <div style="font-size:32px;color:black;"><strong>₺234</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col border mr-2"
+                        style="font-size: xx-small;box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="row">
+                            <div class="ml-3 mt-1" style="height: 30px;margin-bottom: 10px;">
+                                <strong class="mr-1 text-left" style="font-size: 12px;">Ciro</strong><strong
+                                    style="font-size: 10px;color: rgb(113, 187, 3);margin-top: 3px;">Temmuz
+                                    2020</strong>
+                            </div>
+                            <div class="mt-1 text-left" style="margin-left: 210px;">
+                                <strong
+                                    style="font-size: 10px;color: rgb(113, 187, 3);margin-top: 3px;">Toplam</strong><br>
+                                <strong style="font-size: 12px">₺1.639.382,00</strong>
+                            </div>
+                        </div>
+                        <dx-chart style="height: 200px;width: 395px;" id="chart" [dataSource]="dataSource">
+                            <dxi-series argumentField="day" valueField="oranges" type="bar" color="#71bb03">
+                            </dxi-series>
+                        </dx-chart>
+                    </div>
+                    <div class="col border" style="font-size: xx-small;box-shadow: 2px 2px 2px 2px rgb(235, 235, 235);">
+                        <div class="text-center" style="height: 30px;margin-bottom: 10px;">
+                            <strong style="font-size:32px;color: rgb(113, 187, 3);">1.823</strong>
+                        </div>
+                        <div class="text-center">
+                            <strong style="font-size: 12px;">Toplam işlem adedi</strong>
+                        </div>
+                        <div class="text-center">
+                            <strong style="font-size: 10px;color: rgb(113, 187, 3);">Temmuz 2020</strong>
+                        </div>
+                        <dx-chart id="chart" style="height: 150px;" [dataSource]="population">
+                            <dxi-series argumentField="country"></dxi-series>
+                            <dxo-argument-axis>
+                                <dxo-label wordWrap="none" [overlappingBehavior]="currentMode"></dxo-label>
+                            </dxo-argument-axis>
+                            <dxo-legend [visible]="false"></dxo-legend>
+                        </dx-chart>
+                    </div>
+                </div>
+                <div class="row mt-2 justify-content-end">
+                    <div class="col-md-9 row" style="margin-right: 0px;box-shadow: 2px 2px 2px 2px rgb(230, 230, 230);">
+                        <div class="col mt-2 mb-2">
+                            <div style="font-size: xx-small;">
+                                <strong style="color: rgb(55, 195, 238)">Tarife kodu</strong>
+                            </div>
+                            <div style="font-size: x-small;">
+                                <strong>RTC932742</strong>
+                            </div>
+                        </div>
+                        <div class="col mt-2">
+                            <div style="font-size: xx-small;">
+                                <strong style="color: rgb(55, 195, 238)">Tarife adı</strong>
+                            </div>
+                            <div style="font-size: x-small;">
+                                <strong>C segment</strong>
+                            </div>
+                        </div>
+                        <div class="col mt-2">
+                            <div style="font-size: xx-small;">
+                                <strong style="color: rgb(55, 195, 238)">Tarife tipi</strong>
+                            </div>
+                            <div style="font-size: x-small;">
+                                <strong>Tek yön</strong>
+                            </div>
+                        </div>
+                        <div class="col mt-2">
+                            <div style="font-size: xx-small;">
+                                <strong style="color: rgb(55, 195, 238)">Ek süre</strong>
+                            </div>
+                            <div style="font-size: x-small;">
+                                <strong>3 saat</strong>
+                            </div>
+                        </div>
+                        <div class="col mt-2">
+                            <div style="font-size: xx-small;">
+                                <strong style="color: rgb(55, 195, 238)">Min kullanım</strong>
+                            </div>
+                            <div style="font-size: x-small;">
+                                <strong>1 gün</strong>
+                            </div>
+                        </div>
+                        <div class="col mt-2">
+                            <div style="font-size: xx-small;">
+                                <strong style="color: rgb(55, 195, 238)">Maks kullanım</strong>
+                            </div>
+                            <div style="font-size: x-small;">
+                                <strong>45 gün</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>

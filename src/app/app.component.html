@@ -1,0 +1,12 @@
+<div class="border" style="box-shadow: 2px 2px 2px 2px rgb(230, 230, 230)">
+  <app-header></app-header>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <app-category (msgEvent)="recieveValue($event)"></app-category>
+  </div>
+  <div class="col-md-10">
+    <app-details [parentToChildData]="childToParentData"></app-details>
+  </div>
+</div>
+<div class="container">
